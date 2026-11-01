@@ -17,12 +17,13 @@ style.css                  All styles (colours are variables at the top, in :roo
 script.js                  Mobile menu, sticky header, scroll animations, calculators
 robots.txt, sitemap.xml    SEO
 .htaccess                  404 page, compression, caching, security headers, optional HTTPS redirect
-logo.png, favicon.png, Hero.png, og-image.jpg   Images
+logo.png, favicon.png, favicon-32.png, Hero.png, og-image.jpg   Images
 
 IMAGES
 ------
-The images included are original artwork in the site's purple/violet/blue/magenta colours.
-To use your own supplied files, upload them with EXACTLY the same names (Hostinger is
+logo.png, favicon.png and favicon-32.png are the round Chamet logo supplied by the site owner.
+Hero.png and og-image.jpg are original artwork in the site's colours.
+To replace any image, upload them with EXACTLY the same names (Hostinger is
 case-sensitive): logo.png, favicon.png, Hero.png. Recommended sizes:
   logo.png     square, at least 128 x 128
   favicon.png  square, 192 x 192

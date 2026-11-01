@@ -148,7 +148,7 @@ p + p { margin-top: .9rem; }
 .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 
 .brand { display: flex; align-items: center; gap: .65rem; color: #fff; font-weight: 800; font-size: 1.1rem; line-height: 1.1; }
-.brand img { width: 44px; height: 44px; border-radius: 12px; }
+.brand img { width: 44px; height: 44px; border-radius: 50%; }
 .brand-text span { display: block; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--lavender); }
 .brand:hover { color: #fff; }
 
