@@ -153,7 +153,7 @@ p + p { margin-top: .9rem; }
 .brand:hover { color: #fff; }
 
 .nav-toggle {
-  display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
+  display: inline-flex; margin-left: auto; flex-direction: column; justify-content: center; gap: 5px;
   width: 46px; height: 46px; padding: 0 11px;
   background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; cursor: pointer;
 }
@@ -188,16 +188,19 @@ html:not(.js) .site-header { height: auto; position: relative; }
 html:not(.js) .header-inner { flex-wrap: wrap; padding: .8rem 16px; }
 html:not(.js) .nav-toggle { display: none; }
 
-@media (min-width: 1024px) {
-  .nav-toggle { display: none; }
-  .site-nav, html:not(.js) .site-nav {
-    position: static; display: flex !important; align-items: center; gap: 1.2rem;
-    background: none; border: 0; padding: 0; max-height: none; overflow: visible; animation: none;
+/* Larger screens: same three-line menu at the top right, opening as a dropdown panel */
+@media (min-width: 640px) {
+  .site-nav {
+    left: auto; width: 320px;
+    right: max(16px, calc((100vw - var(--container)) / 2 + 24px));
+    top: calc(var(--header-h) + 6px);
+    max-height: calc(100vh - var(--header-h) - 24px);
+    border: 1px solid var(--border-strong); border-radius: var(--radius);
+    padding: .8rem 1rem 1.2rem;
   }
-  .site-nav ul { display: flex; gap: .2rem; }
-  .site-nav li a { border: 0; padding: .5rem .7rem; border-radius: 10px; font-size: .95rem; }
+  .site-nav li a { border-radius: 10px; }
   .site-nav li a:hover { background: var(--surface-2); }
-  .site-nav .nav-cta { margin-top: 0; width: auto; }
+  .site-nav li:last-child a { border-bottom: 0; }
 }
 
 /* ---------- 5. Sections & layout ---------- */

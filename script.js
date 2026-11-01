@@ -34,8 +34,9 @@
         toggle.focus();
       }
     });
-    window.addEventListener('resize', function () {
-      if (window.innerWidth >= 1024) setMenu(false);
+    // Close the menu when clicking anywhere outside it
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('open') && !nav.contains(e.target) && !toggle.contains(e.target)) setMenu(false);
     });
   }
 
