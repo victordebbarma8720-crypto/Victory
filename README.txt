@@ -17,17 +17,19 @@ style.css                  All styles (colours are variables at the top, in :roo
 script.js                  Mobile menu, sticky header, scroll animations, calculators
 robots.txt, sitemap.xml    SEO
 .htaccess                  404 page, compression, caching, security headers, optional HTTPS redirect
-logo.png, favicon.png, favicon-32.png, Hero.png, og-image.jpg   Images
+logo.png, favicon.png, favicon-32.png, Hero.png, Hero-800.webp, Hero-1200.webp, og-image.jpg   Images
 
 IMAGES
 ------
 logo.png, favicon.png and favicon-32.png are the round Chamet logo supplied by the site owner.
-Hero.png and og-image.jpg are original artwork in the site's colours.
+Hero-800.webp / Hero-1200.webp (fast WebP) and Hero.png (fallback) are the supplied app-screens image.
+og-image.jpg is original artwork in the site's colours.
 To replace any image, upload them with EXACTLY the same names (Hostinger is
 case-sensitive): logo.png, favicon.png, Hero.png. Recommended sizes:
   logo.png     square, at least 128 x 128
   favicon.png  square, 192 x 192
-  Hero.png     640 x 560 (or the same 8:7 shape), compressed under ~150 KB
+  Hero.png     1200 x 675 (16:9). If you replace it, also replace Hero-800.webp and Hero-1200.webp
+               (or delete the <source> line in index.html so only Hero.png is used)
   og-image.jpg 1200 x 630 - the picture shown when a page is shared on WhatsApp/Facebook/X
 
 UPLOAD TO HOSTINGER

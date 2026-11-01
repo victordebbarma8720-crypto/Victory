@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Join Chamet Agency India to become a Chamet host or agency partner. Learn about host registration, agency benefits, earning opportunities, commission, and platform guidelines.">
 <meta name="twitter:image" content="https://chametofficialagency.in/og-image.jpg">
 <meta name="twitter:image:alt" content="Chamet Agency India - join as a host or agency partner">
-<link rel="preload" as="image" href="Hero.png" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" imagesrcset="Hero-800.webp 800w, Hero-1200.webp 1200w" imagesizes="(min-width: 900px) 600px, 100vw" fetchpriority="high">
 <link rel="stylesheet" href="style.css">
 <script>document.documentElement.classList.add('js');</script>
 <script src="script.js" defer></script>
@@ -72,7 +72,10 @@
       </ul>
     </div>
     <div class="hero-media">
-      <img src="Hero.png" width="640" height="560" alt="Illustration of a Chamet host live streaming on a phone, with Beans, video call and agency team cards" fetchpriority="high" decoding="async">
+      <picture>
+        <source type="image/webp" srcset="Hero-800.webp 800w, Hero-1200.webp 1200w" sizes="(min-width: 900px) 600px, 100vw">
+        <img src="Hero.png" width="1200" height="675" alt="Chamet app screens: a host profile, a live party room video call and the Party discovery tab" fetchpriority="high" decoding="async">
+      </picture>
     </div>
   </div>
 </section>
