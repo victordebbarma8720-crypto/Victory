@@ -474,7 +474,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 
 /* ---------- 14. Floating WhatsApp button ---------- */
 .wa-float {
-  position: fixed; right: 18px; bottom: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 150;
+  position: fixed; right: 18px; bottom: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 999;
   width: 60px; height: 60px; border-radius: 50%;
   display: grid; place-items: center;
   background: var(--whatsapp); color: #fff;
@@ -483,8 +483,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 }
 .wa-float:hover { color: #fff; transform: scale(1.07); }
 .wa-float svg { width: 34px; height: 34px; position: relative; z-index: 1; }
-/* Hide the floating button while the mobile menu is open */
-body.menu-open .wa-float { display: none; }
+
 .wa-float::before, .wa-float::after {
   content: ""; position: absolute; inset: 0; border-radius: 50%;
   background: var(--whatsapp); z-index: 0; animation: waPulse 2.4s ease-out infinite;
