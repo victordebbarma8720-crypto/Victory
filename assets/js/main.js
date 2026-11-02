@@ -1,22 +1,21 @@
 /* ==========================================================
    Fono Agency India - fonoapp.in
    assets/js/main.js - vanilla JavaScript, no libraries.
-   Handles: registration/download link settings, mobile menu,
+   Handles: referral-code popup for app links, mobile menu,
    sticky header, smooth section scrolling, active nav states,
    and scroll reveal.
    ========================================================== */
 
 /* ----------------------------------------------------------
-   SITE LINK SETTINGS  (the only place you need to edit)
-   Paste a VERIFIED official URL between the quotes.
-   While a value is empty, the matching buttons open WhatsApp
-   (+91 8132958338) with a message asking for the current link,
-   and the "Download" button stays hidden.
+   APP LINK + REFERRAL CODE  (edit here and in the HTML buttons)
+   Every "JOIN AS HOST", "JOIN AS AGENCY" and "DOWNLOAD FONO APP"
+   button links to the same app download and carries
+   data-referral. Clicking one opens a popup that shows the
+   referral code (with a Copy button) before the download.
    ---------------------------------------------------------- */
-var FONO_LINKS = {
-  hostRegistration: '',    // e.g. 'https://...'  -> every "JOIN AS HOST" registration button
-  agencyRegistration: '',  // e.g. 'https://...'  -> every "JOIN AS AGENCY" registration button
-  appDownload: ''          // e.g. 'https://...'  -> "Download the FONO App" buttons
+var FONO_APP = {
+  url: 'https://frnd1.blr1.digitaloceanspaces.com/Fono.apk',
+  referralCode: 'ALFVVDRU'
 };
 
 (function () {
@@ -25,25 +24,90 @@ var FONO_LINKS = {
   var doc = document.documentElement;
   doc.classList.add('js');
 
-  /* ---------- Configurable registration / download links ---------- */
-  function isUrl(v) { return typeof v === 'string' && /^https:\/\/\S+$/i.test(v.trim()); }
+  /* ---------- Referral code popup ---------- */
+  var modal = null, lastTrigger = null, continueLink = null, copyBtn = null, codeEl = null;
 
-  document.querySelectorAll('[data-link]').forEach(function (el) {
-    var key = el.getAttribute('data-link');
-    var url = FONO_LINKS[key];
-    if (!isUrl(url)) return;
-    el.setAttribute('href', url.trim());
-    el.setAttribute('target', '_blank');
-    el.setAttribute('rel', 'noopener');
-    if (el.hasAttribute('hidden')) el.removeAttribute('hidden');
-  });
-  // Notes such as "the button opens WhatsApp..." are hidden once a real link is set
-  document.querySelectorAll('[data-link-note]').forEach(function (el) {
-    if (isUrl(FONO_LINKS[el.getAttribute('data-link-note')])) el.setAttribute('hidden', '');
-  });
-  // Content shown only when a link is configured
-  document.querySelectorAll('[data-link-show]').forEach(function (el) {
-    if (isUrl(FONO_LINKS[el.getAttribute('data-link-show')])) el.removeAttribute('hidden');
+  function buildModal() {
+    modal = document.createElement('div');
+    modal.className = 'ref-modal';
+    modal.setAttribute('hidden', '');
+    modal.innerHTML =
+      '<div class="ref-backdrop" data-close></div>' +
+      '<div class="ref-dialog" role="dialog" aria-modal="true" aria-labelledby="ref-title" aria-describedby="ref-desc">' +
+        '<button type="button" class="ref-close" data-close aria-label="Close">&times;</button>' +
+        '<p class="ref-kicker">Take agency or become host on Fono.<br><span lang="hi">Fono \u092a\u0930 \u0939\u094b\u0938\u094d\u091f \u092c\u0928\u0947\u0902 \u092f\u093e \u090f\u091c\u0947\u0902\u0938\u0940 \u0932\u0947\u0902</span></p>' +
+        '<h2 id="ref-title">Use my referral code</h2>' +
+        '<p id="ref-desc">Enter this code when you register as a host or agency in the FONO app.</p>' +
+        '<div class="ref-code-row"><span class="ref-code"></span><button type="button" class="btn btn-outline btn-sm ref-copy">Copy code</button></div>' +
+        '<ol class="ref-steps"><li>Download and install the FONO app (Android).</li><li>Choose <b>Host</b> or <b>Agency</b>.</li><li>Enter referral code <b class="ref-code-inline"></b>.</li></ol>' +
+        '<a class="btn btn-primary btn-block ref-continue" rel="nofollow noopener">Continue to download</a>' +
+      '</div>';
+    document.body.appendChild(modal);
+    continueLink = modal.querySelector('.ref-continue');
+    copyBtn = modal.querySelector('.ref-copy');
+    codeEl = modal.querySelector('.ref-code');
+
+    modal.addEventListener('click', function (e) {
+      if (e.target.closest('[data-close]')) closeModal();
+    });
+    continueLink.addEventListener('click', function () { setTimeout(closeModal, 300); });
+    copyBtn.addEventListener('click', function () { copyCode(codeEl.textContent); });
+    modal.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { closeModal(); return; }
+      if (e.key !== 'Tab') return;
+      var f = modal.querySelectorAll('button, a[href]');
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+  }
+
+  function copyCode(code) {
+    function done(ok) {
+      copyBtn.textContent = ok ? 'Copied \u2713' : 'Copy failed';
+      setTimeout(function () { copyBtn.textContent = 'Copy code'; }, 2000);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(code).then(function () { done(true); }, function () { done(fallbackCopy(code)); });
+    } else {
+      done(fallbackCopy(code));
+    }
+  }
+
+  function fallbackCopy(code) {
+    var t = document.createElement('textarea');
+    t.value = code; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+    document.body.removeChild(t);
+    return ok;
+  }
+
+  function openModal(trigger) {
+    if (!modal) buildModal();
+    lastTrigger = trigger;
+    var code = trigger.getAttribute('data-referral') || FONO_APP.referralCode;
+    codeEl.textContent = code;
+    modal.querySelector('.ref-code-inline').textContent = code;
+    continueLink.setAttribute('href', trigger.getAttribute('href') || FONO_APP.url);
+    modal.removeAttribute('hidden');
+    document.body.classList.add('modal-open');
+    copyBtn.focus();
+  }
+
+  function closeModal() {
+    if (!modal || modal.hasAttribute('hidden')) return;
+    modal.setAttribute('hidden', '');
+    document.body.classList.remove('modal-open');
+    if (lastTrigger) lastTrigger.focus();
+  }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[data-referral]');
+    if (!a || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    e.preventDefault();
+    openModal(a);
   });
 
   /* ---------- Mobile navigation ---------- */

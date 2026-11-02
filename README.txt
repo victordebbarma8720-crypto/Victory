@@ -34,18 +34,16 @@ upload files with EXACTLY these names into assets/images/ (Hostinger is case-sen
                         in index.html so the layout does not shift.
   og-image.jpg          1200 x 630 - picture shown when a page is shared on WhatsApp/Facebook/X
 
-2. REGISTRATION AND DOWNLOAD LINKS (ONE PLACE)
-----------------------------------------------
-Open assets/js/main.js and fill in the VERIFIED official links at the top:
-  var FONO_LINKS = {
-    hostRegistration: '',    -> all "JOIN AS HOST" registration buttons
-    agencyRegistration: '',  -> all "JOIN AS AGENCY" registration buttons
-    appDownload: ''          -> "DOWNLOAD FONO APP" button (hidden until set)
-  };
-While a value is empty, the buttons open WhatsApp (+91 8132958338) with a message asking for
-the current link, and the download button stays hidden. No registration or download URL has
-been invented. The two hero buttons on the homepage always go to /fono-hosting/ and
-/fono-agency/ as specified.
+2. APP LINK AND REFERRAL CODE
+-----------------------------
+Every "JOIN AS HOST", "JOIN AS AGENCY" and "DOWNLOAD FONO APP" button (including the two
+homepage hero buttons) links to the same FONO app download:
+  https://frnd1.blr1.digitaloceanspaces.com/Fono.apk
+Each button shows "Referral code: ALFVVDRU". Clicking one opens a popup with the code, a
+Copy button and the line "Take agency or become host on Fono. / Fono पर होस्ट बनें या एजेंसी लें";
+"Continue to download" then starts the download. Without JavaScript the link downloads directly.
+To change the link or code: find and replace "Fono.apk" URL and "ALFVVDRU" in all files
+(HTML pages and assets/js/main.js, where FONO_APP holds the defaults).
 
 3. BEFORE PUBLISHING - PLEASE VERIFY
 ------------------------------------
