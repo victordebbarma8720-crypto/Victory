@@ -4,28 +4,37 @@ Static website: HTML5 + CSS3 + vanilla JavaScript. No frameworks, no build step.
 Upload everything in this folder (including the hidden .htaccess) into Hostinger public_html,
 so that index.html sits directly inside public_html.
 
-STRUCTURE
----------
-index.html                     Homepage (About Us = #about-us, Contact = #contact, FAQ = #faq)
-fono-agency/index.html         https://fonoapp.in/fono-agency/
-fono-hosting/index.html        https://fonoapp.in/fono-hosting/
-blog/index.html                https://fonoapp.in/blog/
-blog/<article>/index.html      10 articles, e.g. https://fonoapp.in/blog/fono-beans-to-inr/
+STRUCTURE - EVERYTHING IN ONE FOLDER
+------------------------------------
+All files sit together in one folder - no sub-folders.
+
+Pages                              Address
+index.html                         https://fonoapp.in/  (About Us = #about-us, Contact = #contact)
+fono-agency.html                   https://fonoapp.in/fono-agency.html
+fono-hosting.html                  https://fonoapp.in/fono-hosting.html
+blog.html                          https://fonoapp.in/blog.html
+fono-agency-registration.html, fono-agency-registration-guide.html, how-to-become-fono-host.html,
+fono-host-earnings.html, fono-beans-to-inr.html, fono-agency-commission.html,
+fono-withdrawal-policy.html, fono-app-download.html, fono-streamer-score.html,
+fono-agency-rules.html             the 10 blog articles
 privacy-policy.html, terms-and-conditions.html, disclaimer.html, 404.html
-assets/css/style.css           All styles (colours are variables at the top, in :root)
-assets/js/main.js              Menu, smooth scrolling, active nav, scroll reveal, LINK SETTINGS
-assets/images/                 logo.png, favicon.png, favicon-32.png, apple-touch-icon.png,
-                               hero.png, hero.webp, hero-800.webp, og-image.jpg
+
+style.css   all styles (colours are variables at the top, in :root)
+main.js     menu, smooth scrolling, active nav, scroll reveal, referral-code popup
+Images      logo.png, favicon.png, favicon-32.png, apple-touch-icon.png,
+            hero.png, hero.webp, hero-800.webp, og-image.jpg
 robots.txt, sitemap.xml, .htaccess
 
-All links and asset paths are relative, so nested pages work from any folder.
-404.html alone uses root paths (/assets/...) because the server can show it at any address.
+Links are relative, so pages also open straight from a folder on your computer.
+404.html alone uses root paths (/style.css) because the server can show it at any address.
+.htaccess 301-redirects the folder-style addresses (/fono-agency/, /fono-hosting/, /blog/,
+/blog/<article>/) to the matching .html page, so those links keep working.
 
 1. IMAGES - REPLACE WITH YOUR OWN FILES
 --------------------------------------
 No FONO logo, hero image or favicon was supplied with the build request, so the site ships with
 ORIGINAL stand-in artwork in the site colours (not the official FONO logo). To use your own,
-upload files with EXACTLY these names into assets/images/ (Hostinger is case-sensitive):
+upload files with EXACTLY these names into the same folder (Hostinger is case-sensitive):
   logo.png              square, 160 x 160 or larger (header + footer)
   favicon.png           192 x 192;  favicon-32.png 32 x 32;  apple-touch-icon.png 180 x 180
   hero.png              1200 x 900 (4:3). ALSO replace hero.webp (1200 x 900) and
@@ -43,7 +52,7 @@ Each button shows "Referral code: ALFVVDRU". Clicking one opens a popup with the
 Copy button and the line "Take agency or become host on Fono. / Fono पर होस्ट बनें या एजेंसी लें";
 "Continue to download" then starts the download. Without JavaScript the link downloads directly.
 To change the link or code: find and replace "Fono.apk" URL and "ALFVVDRU" in all files
-(HTML pages and assets/js/main.js, where FONO_APP holds the defaults).
+(HTML pages and main.js, where FONO_APP holds the defaults).
 
 3. BEFORE PUBLISHING - PLEASE VERIFY
 ------------------------------------
@@ -72,5 +81,5 @@ To change the link or code: find and replace "Fono.apk" URL and "ALFVVDRU" in al
 ----------
 Header, footer and the floating WhatsApp button are repeated on every page. If you change them,
 use "find and replace in all files" (e.g. VS Code). WhatsApp number everywhere: 918132958338.
-When you add an article: copy an article folder, change title, meta description, canonical,
-H1, content and the JSON-LD; add a card to blog/index.html; add the URL to sitemap.xml.
+When you add an article: copy an article .html file, rename it, change title, meta description, canonical,
+H1, content and the JSON-LD; add a card to blog.html; add the URL to sitemap.xml.

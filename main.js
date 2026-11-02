@@ -1,6 +1,6 @@
 /* ==========================================================
    Fono Agency India - fonoapp.in
-   assets/js/main.js - vanilla JavaScript, no libraries.
+   main.js - vanilla JavaScript, no libraries.
    Handles: referral-code popup for app links, mobile menu,
    sticky header, smooth section scrolling, active nav states,
    and scroll reveal.
