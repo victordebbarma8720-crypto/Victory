@@ -1,64 +1,78 @@
-Chamet Agency India - chametofficialagency.in
-==============================================
+Fono Agency India - fonoapp.in
+==============================
 Static website: HTML5 + CSS3 + vanilla JavaScript. No frameworks, no build step.
-Every file sits in one folder - upload them all directly into Hostinger public_html.
+Upload everything in this folder (including the hidden .htaccess) into Hostinger public_html,
+so that index.html sits directly inside public_html.
 
-FILES
------
-index.html                 Homepage (About Us = #about-us, Contact = #contact, FAQ = #faq,
-                           commission calculator = #commission-calculator)
-chamet-agency.html         Chamet Agency page (registration, commission, calculator, dashboard, rules, FAQ)
-chamet-host.html           Chamet Host page (registration, guidelines, Beans estimator, payments, rules, FAQ)
-blog.html                  Blog: 8 article cards; "Read More" jumps to the full article on the same page
-privacy-policy.html        Privacy Policy (footer link)
-terms-and-conditions.html  Terms and Conditions (footer link)
-404.html                   "Page not found" page
-style.css                  All styles (colours are variables at the top, in :root)
-script.js                  Mobile menu, sticky header, scroll animations, calculators
-robots.txt, sitemap.xml    SEO
-.htaccess                  404 page, compression, caching, security headers, optional HTTPS redirect
-logo.png, favicon.png, favicon-32.png, Hero.png, Hero-800.webp, Hero-1200.webp, og-image.jpg   Images
+STRUCTURE
+---------
+index.html                     Homepage (About Us = #about-us, Contact = #contact, FAQ = #faq)
+fono-agency/index.html         https://fonoapp.in/fono-agency/
+fono-hosting/index.html        https://fonoapp.in/fono-hosting/
+blog/index.html                https://fonoapp.in/blog/
+blog/<article>/index.html      10 articles, e.g. https://fonoapp.in/blog/fono-beans-to-inr/
+privacy-policy.html, terms-and-conditions.html, disclaimer.html, 404.html
+assets/css/style.css           All styles (colours are variables at the top, in :root)
+assets/js/main.js              Menu, smooth scrolling, active nav, scroll reveal, LINK SETTINGS
+assets/images/                 logo.png, favicon.png, favicon-32.png, apple-touch-icon.png,
+                               hero.png, hero.webp, hero-800.webp, og-image.jpg
+robots.txt, sitemap.xml, .htaccess
 
-IMAGES
-------
-logo.png, favicon.png and favicon-32.png are the round Chamet logo supplied by the site owner.
-Hero-800.webp / Hero-1200.webp (fast WebP) and Hero.png (fallback) are the supplied app-screens image.
-og-image.jpg is original artwork in the site's colours.
-To replace any image, upload them with EXACTLY the same names (Hostinger is
-case-sensitive): logo.png, favicon.png, Hero.png. Recommended sizes:
-  logo.png     square, at least 128 x 128
-  favicon.png  square, 192 x 192
-  Hero.png     1200 x 675 (16:9). If you replace it, also replace Hero-800.webp and Hero-1200.webp
-               (or delete the <source> line in index.html so only Hero.png is used)
-  og-image.jpg 1200 x 630 - the picture shown when a page is shared on WhatsApp/Facebook/X
+All links and asset paths are relative, so nested pages work from any folder.
+404.html alone uses root paths (/assets/...) because the server can show it at any address.
 
-UPLOAD TO HOSTINGER
--------------------
-1. hPanel > Websites > Manage > File Manager > public_html.
-2. Back up and remove old site files you no longer need.
-3. Upload all files (including the hidden .htaccess) so index.html sits directly in public_html.
-4. hPanel > Security > SSL: install the free SSL certificate, then enable "Force HTTPS"
-   (or remove the # marks in the HTTPS block of .htaccess).
-5. Google Search Console: add the domain, verify it, and submit sitemap.xml.
+1. IMAGES - REPLACE WITH YOUR OWN FILES
+--------------------------------------
+No FONO logo, hero image or favicon was supplied with the build request, so the site ships with
+ORIGINAL stand-in artwork in the site colours (not the official FONO logo). To use your own,
+upload files with EXACTLY these names into assets/images/ (Hostinger is case-sensitive):
+  logo.png              square, 160 x 160 or larger (header + footer)
+  favicon.png           192 x 192;  favicon-32.png 32 x 32;  apple-touch-icon.png 180 x 180
+  hero.png              1200 x 900 (4:3). ALSO replace hero.webp (1200 x 900) and
+                        hero-800.webp (800 x 600) - modern browsers load the WebP files first.
+                        If your hero has a different shape, update width/height on the <img>
+                        in index.html so the layout does not shift.
+  og-image.jpg          1200 x 630 - picture shown when a page is shared on WhatsApp/Facebook/X
 
-BEFORE PUBLISHING - PLEASE VERIFY
----------------------------------
-- No host or agency registration URL is published. All registration buttons open WhatsApp
-  with a message asking for the current link. Keep it that way unless you have a verified link.
-- Agency dashboard URL used (as supplied): https://newa4mnou8u5xdi9.rchamet.com/user/login/
-- No Beans-to-USD rate is published. The Beans estimator asks the visitor to type the
-  current rate from the app.
-- Commission example (Agents A-D, $362 total) is from the supplied presentation and is
-  labelled as illustrative. Exact commission tiers are not published - confirm before adding.
-- Settlement rules ($10 minimum, multiples of $10, Metwallet, face verification, refunds)
-  are from the supplied presentation and labelled as such.
-- The site describes itself as an independent information and assistance website, not
-  Chamet's official corporate website. Only change this if official status is verified.
-- WhatsApp number used everywhere: +91 8132958338 (wa.me/918132958338).
+2. REGISTRATION AND DOWNLOAD LINKS (ONE PLACE)
+----------------------------------------------
+Open assets/js/main.js and fill in the VERIFIED official links at the top:
+  var FONO_LINKS = {
+    hostRegistration: '',    -> all "JOIN AS HOST" registration buttons
+    agencyRegistration: '',  -> all "JOIN AS AGENCY" registration buttons
+    appDownload: ''          -> "DOWNLOAD FONO APP" button (hidden until set)
+  };
+While a value is empty, the buttons open WhatsApp (+91 8132958338) with a message asking for
+the current link, and the download button stays hidden. No registration or download URL has
+been invented. The two hero buttons on the homepage always go to /fono-hosting/ and
+/fono-agency/ as specified.
 
-EDITING
--------
-Header, footer and the floating WhatsApp button are repeated on every page. If you change
-them, use "find and replace in all files" in an editor such as VS Code.
-If you change an FAQ answer, also change the matching text in the FAQPage JSON-LD
-(<script type="application/ld+json">) in the <head> of the same page.
+3. BEFORE PUBLISHING - PLEASE VERIFY
+------------------------------------
+- KANDY REFERENCE: the supplied FONO Policy (08 December 2025) refers to "Kandy" in its
+  recruitment restrictions (no cross-agency recruitment, no promotion of other platforms).
+  The site shows all four recruitment rules with a "Verify" tag and a "Verification pending"
+  note on /fono-agency/, /blog/fono-agency-rules/ and /blog/fono-agency-registration-guide/.
+  Once you confirm they apply to FONO, you can remove those notes and tags.
+- AGENCY CONVERSION: the policy states 1,000 Beans = Rs 10 in the streamer salary section. The
+  site says 100,000 Beans "corresponds to Rs 1,000" for agencies but asks agencies to confirm.
+- WITHDRAWAL TIME ZONE: the policy says 8 AM - 8 PM but no time zone; the site says so.
+- All figures (call rates, salary, conversion, Streamer Score, withdrawal, commission,
+  penalties, PAN rules) are exactly as supplied. Update every page if the policy changes.
+- The site describes itself as an independent information website, not the official FONO
+  website. Change this only if official authorisation is confirmed.
+
+4. HOSTINGER
+------------
+1. hPanel > Websites > Manage > File Manager > public_html. Back up and remove old files.
+2. Upload all files and folders (zip, upload, Extract is easiest). Include .htaccess.
+3. hPanel > Security > SSL: install the free certificate, enable Force HTTPS
+   (or un-comment the HTTPS block in .htaccess AFTER the certificate is active).
+4. Google Search Console: add fonoapp.in, verify via DNS, submit sitemap.xml.
+
+5. EDITING
+----------
+Header, footer and the floating WhatsApp button are repeated on every page. If you change them,
+use "find and replace in all files" (e.g. VS Code). WhatsApp number everywhere: 918132958338.
+When you add an article: copy an article folder, change title, meta description, canonical,
+H1, content and the JSON-LD; add a card to blog/index.html; add the URL to sitemap.xml.

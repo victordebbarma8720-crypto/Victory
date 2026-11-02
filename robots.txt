@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://chametofficialagency.in/sitemap.xml
+Sitemap: https://fonoapp.in/sitemap.xml
