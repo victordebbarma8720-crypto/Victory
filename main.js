@@ -1,5 +1,5 @@
 /* ==========================================================
-   Fono Agency India - fonoapp.in
+   Fono Agency India - fonoofficial.in
    main.js - vanilla JavaScript, no libraries.
    Handles: referral-code popup for app links, mobile menu,
    sticky header, smooth section scrolling, active nav states,

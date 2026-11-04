@@ -1,5 +1,5 @@
 # ==========================================================
-# fonoapp.in - Apache / Hostinger configuration
+# fonoofficial.in - Apache / Hostinger configuration
 # ==========================================================
 Options -Indexes
 DirectoryIndex index.html
@@ -11,7 +11,7 @@ ErrorDocument 404 /404.html
   # --- HTTPS + non-www (enable AFTER the SSL certificate is active in hPanel) ---
   # RewriteCond %{HTTPS} off [OR]
   # RewriteCond %{HTTP_HOST} ^www\. [NC]
-  # RewriteRule ^ https://fonoapp.in%{REQUEST_URI} [L,R=301]
+  # RewriteRule ^ https://fonoofficial.in%{REQUEST_URI} [L,R=301]
 
   # /index.html -> /
   RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]

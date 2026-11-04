@@ -1,4 +1,4 @@
-Fono Agency India - fonoapp.in
+Fono Agency India - fonoofficial.in
 ==============================
 Static website: HTML5 + CSS3 + vanilla JavaScript. No frameworks, no build step.
 Upload everything in this folder (including the hidden .htaccess) into Hostinger public_html,
@@ -9,10 +9,10 @@ STRUCTURE - EVERYTHING IN ONE FOLDER
 All files sit together in one folder - no sub-folders.
 
 Pages                              Address
-index.html                         https://fonoapp.in/  (About Us = #about-us, Contact = #contact)
-fono-agency.html                   https://fonoapp.in/fono-agency.html
-fono-hosting.html                  https://fonoapp.in/fono-hosting.html
-blog.html                          https://fonoapp.in/blog.html
+index.html                         https://fonoofficial.in/  (About Us = #about-us, Contact = #contact)
+fono-agency.html                   https://fonoofficial.in/fono-agency.html
+fono-hosting.html                  https://fonoofficial.in/fono-hosting.html
+blog.html                          https://fonoofficial.in/blog.html
 fono-agency-registration.html, fono-agency-registration-guide.html, how-to-become-fono-host.html,
 fono-host-earnings.html, fono-beans-to-inr.html, fono-agency-commission.html,
 fono-withdrawal-policy.html, fono-app-download.html, fono-streamer-score.html,
@@ -75,7 +75,7 @@ To change the link or code: find and replace "Fono.apk" URL and "ALFVVDRU" in al
 2. Upload all files and folders (zip, upload, Extract is easiest). Include .htaccess.
 3. hPanel > Security > SSL: install the free certificate, enable Force HTTPS
    (or un-comment the HTTPS block in .htaccess AFTER the certificate is active).
-4. Google Search Console: add fonoapp.in, verify via DNS, submit sitemap.xml.
+4. Google Search Console: add fonoofficial.in, verify via DNS, submit sitemap.xml.
 
 5. EDITING
 ----------

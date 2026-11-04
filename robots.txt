@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fonoapp.in/sitemap.xml
+Sitemap: https://fonoofficial.in/sitemap.xml
